@@ -26,6 +26,7 @@
     "webpack-dev-server": "^2.9.4"
   },
   "dependencies": {
+    "mysql": "^2.15.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"
   }

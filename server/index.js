@@ -1,24 +1,13 @@
 const express = require('express');
+const router = require('./router');
+
 const app = express();
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * *
-  Middleware
-* * * * * * * * * * * * * * * * * * * * * * * * * * */
-
+/* * * * Middleware * * * */
 app.use(express.static(__dirname + '/../client/dist'));
+app.use('/', router);
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * *
-  Router
-* * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-app.get('/company', (req, res) => {
-  res.status(200).send('You got it');
-});
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * *
-  Server
-* * * * * * * * * * * * * * * * * * * * * * * * * * */
-
+/* * * * Server * * * */
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}`);
