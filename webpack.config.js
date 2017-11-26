@@ -16,6 +16,12 @@ module.exports = {
         }
       }
     ]
+  },
+  devServer: {
+    contentBase: './client/dist',
+    proxy: {
+      '/': 'http://localhost:3000'
+    }
   }
 };
 
