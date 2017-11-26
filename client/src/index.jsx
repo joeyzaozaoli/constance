@@ -1,5 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app.jsx';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reduxPromise from 'redux-promise';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+import App from './components/app.jsx';
+import reducers from './reducers/index';
+
+const createStoreWithMiddleware = applyMiddleware(reduxPromise)(createStore);
+const store = createStoreWithMiddleware(reducers);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app')
+);

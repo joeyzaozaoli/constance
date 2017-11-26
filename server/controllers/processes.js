@@ -1,7 +1,8 @@
 const db = require('../db/config');
 
 module.exports.getAllProcesses = (req, res) => {
-  db.query('SELECT * from processes WHERE company_id=2;', (err, rows) => {
+  const queryString = 'SELECT acronym, expansion, overview from processes WHERE company_id=2;'
+  db.query(queryString, (err, rows) => {
     if (!err) { res.json(rows); }
   });
 };
