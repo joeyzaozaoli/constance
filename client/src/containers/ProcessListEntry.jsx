@@ -1,11 +1,25 @@
 import React from 'react';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
 
-export default class ProcessListEntry extends React.Component {
+import { getCurrentProcess } from '../actions/processesAction';
+
+class ProcessListEntry extends React.Component {
 
   render() {
     return (
-      <button>{this.props.acronym}</button>
+      <button onClick={() => {this.props.getCurrentProcess(this.props.process);}}>
+        {this.props.process.acronym}
+      </button>
     );
   }
 
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    getCurrentProcess: getCurrentProcess
+  }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(ProcessListEntry);

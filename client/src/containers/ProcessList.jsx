@@ -14,7 +14,7 @@ class ProcessList extends React.Component {
   render() {
     return (
       <div>
-        {this.props.processes.map((process) => <ProcessListEntry acronym={process.acronym} key={process.acronym}/>)}
+        {this.props.processes.map((process) => <ProcessListEntry process={process}/>)}
       </div>
     );
   }
@@ -23,7 +23,7 @@ class ProcessList extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    processes: state.processes
+    processes: state.process.processes
   }
 };
 
