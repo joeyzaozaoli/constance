@@ -11,9 +11,19 @@ class NarrativeOverview extends React.Component {
         <div>{this.props.currentProcess.expansion}</div>
         <HotTable root='hot' settings={{
           data: [this.props.currentProcess],
-          columns: [{data: 'overview'}],
-          colHeaders: ['Overview'],
-          colWidths: [1000]
+          columns: [
+            {data: 'id'},
+            {data: 'overview'}
+          ],
+          colHeaders: [
+            'Id',
+            'Overview'
+          ],
+          colWidths: [
+            0.1,
+            1000
+          ],
+          hiddenColumns: { columns: [0], indicators: false }
         }} />
       </div>
     );
