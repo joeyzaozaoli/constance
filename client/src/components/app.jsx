@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ProcessList from '../containers/ProcessList.jsx';
-import Narrative from '../containers/Narrative.jsx';
+import NarrativeOverview from '../containers/NarrativeOverview.jsx';
 
 export default class App extends React.Component {
 
@@ -9,7 +9,7 @@ export default class App extends React.Component {
     return (
       <div>
         <ProcessList />
-        <Narrative />
+        <NarrativeOverview />
       </div>
     );
   }
