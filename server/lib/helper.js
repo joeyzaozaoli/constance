@@ -1,11 +1,11 @@
 module.exports.getFieldsArr = (row) => {
-  let fieldsArr = Object.keys(row);
+  const fieldsArr = Object.keys(row);
 
   return fieldsArr;
 };
 
 module.exports.getFields = (fieldsArr) => {
-  let fields = fieldsArr.join(', ');
+  const fields = fieldsArr.join(', ');
 
   return fields;
 };
@@ -13,8 +13,7 @@ module.exports.getFields = (fieldsArr) => {
 module.exports.getValues = (row, fieldsArr) => {
   let values = fieldsArr.map((field) => { return row[field]; });
   for (let i = 0; i < values.length; i++) {
-    // handle empty cells
-    if (values[i] === null || values[i] === '') {
+    if (values[i] === null || values[i] === '') { // handle empty cells
       values[i] = 'null';
     }
     if (typeof(values[i]) === 'string' && values[i] !== 'null') {
@@ -30,7 +29,7 @@ module.exports.getUpdateQuery = (fieldsArr) => {
   for (let i = 0; i < fieldsArr.length; i++) {
     fieldsArr[i] = `${fieldsArr[i]}=VALUES(${fieldsArr[i]})`;
   }
-  let updateQuery = fieldsArr.join(', ');
+  const updateQuery = fieldsArr.join(', ');
 
   return updateQuery;
 };

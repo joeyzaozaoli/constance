@@ -1,9 +1,9 @@
 const router = require('express').Router();
 
-const processes = require('./controllers/processes');
+const proces = require('./controllers/process'); // avoid naming conflict with process
 
-router.get('/api/processes', processes.getAllProcesses);
-router.post('/process', processes.createAndUpdateProcess);
-router.put('/process', processes.createAndUpdateProcess);
+router.get('/api/processes', proces.getAllProcesses);
+router.post('/process', proces.createAndUpdateProcess);
+router.put('/process', proces.createAndUpdateProcess);
 
 module.exports = router;

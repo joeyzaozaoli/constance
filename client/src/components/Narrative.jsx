@@ -1,15 +1,15 @@
 import React from 'react';
 
 import ProcessList from '../containers/ProcessList.jsx';
-import NarrativeOverview from '../containers/NarrativeOverview.jsx';
+import ProcessOverview from '../containers/ProcessOverview.jsx';
 
-export default class App extends React.Component {
+export default class Narrative extends React.Component {
 
   render() {
     return (
       <div>
         <ProcessList />
-        <NarrativeOverview />
+        <ProcessOverview />
       </div>
     );
   }

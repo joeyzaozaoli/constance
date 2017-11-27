@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import ProcessListEntry from './ProcessListEntry.jsx';
-import { getAllProcesses } from '../actions/processesAction';
+import { getAllProcesses } from '../actions/processAction';
 
 class ProcessList extends React.Component {
 

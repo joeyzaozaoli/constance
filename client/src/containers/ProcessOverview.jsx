@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
 
-import { createAndUpdateProcess } from '../actions/processesAction';
+import { createAndUpdateProcess } from '../actions/processAction';
 
-class NarrativeOverview extends React.Component {
+class ProcessOverview extends React.Component {
 
   render() {
     const container = this;
@@ -54,4 +54,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NarrativeOverview);
+export default connect(mapStateToProps, mapDispatchToProps)(ProcessOverview);

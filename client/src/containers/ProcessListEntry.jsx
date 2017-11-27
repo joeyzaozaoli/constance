@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { getCurrentProcess } from '../actions/processesAction';
+import { getCurrentProcess } from '../actions/processAction';
 
 class ProcessListEntry extends React.Component {
 

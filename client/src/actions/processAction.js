@@ -13,11 +13,11 @@ export const getAllProcesses = () => {
   };
 };
 
-export const getCurrentProcess = (processe) => {
+export const getCurrentProcess = (proces) => { // avoid naming conflict with process
   return {
     type: GET_CURRENT_PROCESS,
-    payload: processe
-  }
+    payload: proces
+  };
 };
 
 export const createAndUpdateProcess = (changes, source, hotTable) => {

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import processesReducer from './processesReducer';
+import processReducer from './processReducer';
 
 const reducers = combineReducers({
-  process: processesReducer
+  process: processReducer
 });
 
 export default reducers;

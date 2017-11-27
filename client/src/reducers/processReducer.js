@@ -1,6 +1,6 @@
-import { GET_ALL_PROCESSES, GET_CURRENT_PROCESS } from '../actions/processesAction';
+import { GET_ALL_PROCESSES, GET_CURRENT_PROCESS } from '../actions/processAction';
 
-const processesReducer = (state={processes: [], currentProcess: {}}, action) => {
+const processReducer = (state={processes: [], currentProcess: {}}, action) => {
   switch (action.type) {
     case (GET_ALL_PROCESSES) :
       return Object.assign({}, state, {processes: action.payload.data});
@@ -11,4 +11,4 @@ const processesReducer = (state={processes: [], currentProcess: {}}, action) => 
   }
 };
 
-export default processesReducer;
+export default processReducer;
