@@ -21,18 +21,26 @@ export const getCurrentProcess = (processe) => {
 };
 
 export const createAndUpdateProcess = (changes, source, hotTable) => {
-  const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable);
+  return (dispatch) => {
+    const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable);
 
-  if (newAndUpdatedRows) {
-    const newRows = newAndUpdatedRows.newRows;
-    const updatedRows = newAndUpdatedRows.updatedRows;
+    if (newAndUpdatedRows) {
+      const newRows = newAndUpdatedRows.newRows;
+      const updatedRows = newAndUpdatedRows.updatedRows;
 
-    if (newRows.length > 0) {
-      axios.post('/process', {newRows});
+      if (newRows.length > 0) {
+        axios.post('/process', {newRows})
+        .then(() => {
+          dispatch(getAllProcesses());
+        });
+      }
+
+      if (updatedRows.length > 0) {
+        axios.put('/process', {updatedRows})
+        .then(() => {
+          dispatch(getAllProcesses());
+        });
+      }
     }
-
-    if (updatedRows.length > 0) {
-      axios.put('/process', {updatedRows});
-    }
-  }
+  };
 };
