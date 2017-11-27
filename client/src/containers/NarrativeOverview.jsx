@@ -1,15 +1,20 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
+
+import { createAndUpdateProcess } from '../actions/processesAction';
 
 class NarrativeOverview extends React.Component {
 
   render() {
+    const container = this;
+
     return (
       <div>
         <div>{this.props.currentProcess.acronym}</div>
         <div>{this.props.currentProcess.expansion}</div>
-        <HotTable root='hot' settings={{
+        <HotTable root='hot' ref='table' settings={{
           data: [this.props.currentProcess],
           columns: [
             {data: 'id'},
@@ -23,7 +28,13 @@ class NarrativeOverview extends React.Component {
             0.1,
             1000
           ],
-          hiddenColumns: { columns: [0], indicators: false }
+          hiddenColumns: { columns: [0], indicators: false },
+          afterChange: (changes, source) => {
+            if (changes && source !== 'loadData') {
+              const hotTable = this.refs.table;
+              container.props.createAndUpdateProcess(changes, source, hotTable);
+            }
+          }
         }} />
       </div>
     );
@@ -37,4 +48,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(NarrativeOverview);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    createAndUpdateProcess: createAndUpdateProcess
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NarrativeOverview);

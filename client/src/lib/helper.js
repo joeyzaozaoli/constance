@@ -1,60 +1,58 @@
 export const getNewAndUpdatedRows = (changes, source, hotTable) => {
-  if (changes && source !== 'loadData') {
-    const newRows = [];
-    const updatedRows = [];
+  const newRows = [];
+  const updatedRows = [];
 
-    for (let change of changes) {
-      let rowIndex = change[0]; // per spreadsheet
-      let rowId = hotTable.hotInstance.getSourceDataAtRow(rowIndex).id; // per database
-      let field = change[1];
-      let newValue = change[3];
-      let colIndex = hotTable.hotInstance.propToCol(change[1]); // per spreadsheet
-      let cell = hotTable.hotInstance.getCell(rowIndex, colIndex);
+  for (const change of changes) {
+    const rowIndex = change[0]; // per spreadsheet
+    const rowId = hotTable.hotInstance.getSourceDataAtRow(rowIndex).id; // per database
+    const field = change[1];
+    const newValue = change[3];
+    const colIndex = hotTable.hotInstance.propToCol(change[1]); // per spreadsheet
+    const cell = hotTable.hotInstance.getCell(rowIndex, colIndex);
 
-      if (!cell.classList.value.split(' ').includes('htInvalid')) {
-        if (rowId === null) {
-          let found = false;
+    if (!cell.classList.value.split(' ').includes('htInvalid')) {
+      if (rowId === null) {
+        let found = false;
 
-          for (let newRow of newRows) {
-            if (newRow.index === rowIndex) {
-              newRow[field] = newValue;
-              found = true;
-              break;
-            }
-          }
-
-          if (!found) {
-            let newRow = {index: rowIndex};
+        for (const newRow of newRows) {
+          if (newRow.index === rowIndex) {
             newRow[field] = newValue;
-            newRows.push(newRow);
+            found = true;
+            break;
           }
+        }
 
-        } else {
-          let found = false;
+        if (!found) {
+          const newRow = {index: rowIndex};
+          newRow[field] = newValue;
+          newRows.push(newRow);
+        }
 
-          for (let updatedRow of updatedRows) {
-            if (updatedRow.id === rowId) {
-              updatedRow[field] = newValue;
-              found = true;
-              break;
-            }
-          }
+      } else {
+        let found = false;
 
-          if (!found) {
-            let updatedRow = {id: rowId};
+        for (const updatedRow of updatedRows) {
+          if (updatedRow.id === rowId) {
             updatedRow[field] = newValue;
-            updatedRows.push(updatedRow);
+            found = true;
+            break;
           }
+        }
+
+        if (!found) {
+          const updatedRow = {id: rowId};
+          updatedRow[field] = newValue;
+          updatedRows.push(updatedRow);
         }
       }
     }
-
-    for (let newRow of newRows) {
-      if ('index' in newRow) {
-        delete newRow.index;
-      }
-    }
-
-    return {newRows, updatedRows};
   }
+
+  for (const newRow of newRows) {
+    if ('index' in newRow) {
+      delete newRow.index;
+    }
+  }
+
+  return {newRows, updatedRows};
 };
