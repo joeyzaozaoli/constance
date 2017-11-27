@@ -14,7 +14,7 @@ class ProcessList extends React.Component {
   render() {
     return (
       <div>
-        {this.props.processes.map((process) => <ProcessListEntry process={process}/>)}
+        {this.props.processes.map((process) => <ProcessListEntry process={process} key={process.id}/>)}
       </div>
     );
   }
