@@ -9,7 +9,7 @@ class ProcessListEntry extends React.Component {
   render() {
     return (
       <button onClick={() => {this.props.getCurrentProcess(this.props.process);}}>
-        {this.props.process.acronym}
+        {this.props.process.shortName}
       </button>
     );
   }

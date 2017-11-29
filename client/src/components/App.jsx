@@ -5,7 +5,7 @@ import NavBar from './NavBar.jsx';
 import Narrative from './Narrative.jsx';
 import ProcessSetting from '../containers/ProcessSetting.jsx';
 
-export default class App extends React.Component {
+class App extends React.Component {
 
   render() {
     return (
@@ -20,3 +20,5 @@ export default class App extends React.Component {
   }
 
 }
+
+export default App;
