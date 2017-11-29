@@ -9,7 +9,7 @@ const app = express();
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use('/', router); // Router configuration must be after all other configurations.
+app.use('/', router); // Router configuration must be after all other configurations
 
 /* * * * Server * * * */
 const port = process.env.PORT || 3000;

@@ -3,12 +3,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
 
-import { getAllProcesses, createAndUpdateProcess } from '../actions/processAction';
+import { getCompany, updateCompany } from '../actions/companyAction';
 
-class ProcessSetting extends React.Component {
+class CompanySetting extends React.Component {
 
   componentWillMount() {
-    this.props.getAllProcesses();
+    this.props.getCompany();
   }
 
   render() {
@@ -17,30 +17,24 @@ class ProcessSetting extends React.Component {
     return (
       <div>
         <HotTable root='hot' ref='table' settings={{
-          data: this.props.processes,
+          data: this.props.company,
           columns: [
             {data: 'id'},
-            {data: 'shortName'},
             {data: 'name'}
           ],
           colHeaders: [
             'id',
-            'Process abbrev',
-            'Short for'
+            'Company'
           ],
           colWidths: [
             0.1,
-            100,
             200
           ],
           hiddenColumns: { columns: [0], indicators: false },
-          columnSorting: true,
-          rowHeaders: true,
-          minSpareRows: 1,
           afterChange: (changes, source) => {
             if (changes && source !== 'loadData') {
               const hotTable = this.refs.table;
-              container.props.createAndUpdateProcess(changes, source, hotTable);
+              container.props.updateCompany(changes, source, hotTable);
             }
           }
         }} />
@@ -52,15 +46,15 @@ class ProcessSetting extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    processes: state.process.processes
+    company: state.company
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    getAllProcesses: getAllProcesses,
-    createAndUpdateProcess: createAndUpdateProcess
+    getCompany: getCompany,
+    updateCompany: updateCompany
   }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProcessSetting);
+export default connect(mapStateToProps, mapDispatchToProps)(CompanySetting);

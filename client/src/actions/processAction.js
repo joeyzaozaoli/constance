@@ -31,6 +31,7 @@ export const createAndUpdateProcess = (changes, source, hotTable) => {
       if (newRows.length > 0) {
         axios.post('/process', {newRows})
         .then(() => {
+          console.log('inside of action before get all processes');
           dispatch(getAllProcesses());
         });
       }

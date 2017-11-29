@@ -21,7 +21,7 @@ class ProcessOverview extends React.Component {
             {data: 'overview'}
           ],
           colHeaders: [
-            'Id',
+            'id',
             'Overview'
           ],
           colWidths: [

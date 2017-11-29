@@ -1,16 +1,18 @@
-module.exports.getFieldsArr = (row) => {
+const db = require('../db/config');
+
+const getFieldsArr = (row) => {
   const fieldsArr = Object.keys(row);
 
   return fieldsArr;
 };
 
-module.exports.getFieldsStr = (fieldsArr) => {
-  const fieldsStr = fieldsArr.join(', ');
+const getFields = (fieldsArr) => {
+  const fields = fieldsArr.join(', ');
 
-  return fieldsStr;
+  return fields;
 };
 
-module.exports.getValuesStr = (row, fieldsArr) => {
+const getValues = (row, fieldsArr) => {
   const valuesArr = fieldsArr.map((field) => { return row[field]; });
 
   for (let i = 0; i < valuesArr.length; i++) {
@@ -22,12 +24,12 @@ module.exports.getValuesStr = (row, fieldsArr) => {
     }
   }
 
-  const valuesStr = valuesArr.join(', ');
+  const values = valuesArr.join(', ');
 
-  return valuesStr;
+  return values;
 };
 
-module.exports.getUpdateQuery = (fieldsArr) => {
+const getUpdateQuery = (fieldsArr) => {
   for (let i = 0; i < fieldsArr.length; i++) {
     fieldsArr[i] = `${fieldsArr[i]}=VALUES(${fieldsArr[i]})`;
   }
@@ -36,4 +38,30 @@ module.exports.getUpdateQuery = (fieldsArr) => {
 
   return updateQuery;
 };
+
+
+module.exports.createAndUpdateRowsOfTable = (req, res, table) => {
+  let rows;
+  if (req.method === 'POST') {
+    rows = req.body.newRows;
+  } else if (req.method === 'PUT') {
+    rows = req.body.updatedRows;
+  }
+
+  for (const row of rows) {
+    const fieldsArr = getFieldsArr(row);
+    const fields = getFields(fieldsArr);
+    const values = getValues(row, fieldsArr);
+
+    if (req.method === 'POST') {
+      db.query(`INSERT INTO ${table}(${fields}) VALUES (${values});`);
+    } else if (req.method === 'PUT') {
+      const updateQuery = getUpdateQuery(fieldsArr);
+      db.query(`INSERT INTO ${table}(${fields}) VALUES (${values}) ON DUPLICATE KEY UPDATE ${updateQuery};`);
+    }
+  }
+
+  res.sendStatus(201);
+};
+
 
