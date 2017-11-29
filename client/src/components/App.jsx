@@ -2,9 +2,8 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import NavBar from './NavBar.jsx';
+import Setting from './Setting.jsx';
 import Narrative from './Narrative.jsx';
-// import ProcessSetting from '../containers/ProcessSetting.jsx';
-import CompanySetting from '../containers/CompanySetting.jsx';
 
 class App extends React.Component {
 
@@ -13,8 +12,8 @@ class App extends React.Component {
       <div>
         <NavBar />
         <Switch>
+          <Route exact path='/setting' component={Setting} />
           <Route exact path='/narrative' component={Narrative} />
-          <Route exact path='/setting' component={CompanySetting} />
         </Switch>
       </div>
     );

@@ -1,8 +1,10 @@
 DROP DATABASE IF EXISTS constance;
-
 CREATE DATABASE constance;
-
 USE constance;
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+  Schema
+* * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 CREATE TABLE companies (
   id INT NOT NULL AUTO_INCREMENT,
