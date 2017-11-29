@@ -4,31 +4,34 @@ module.exports.getFieldsArr = (row) => {
   return fieldsArr;
 };
 
-module.exports.getFields = (fieldsArr) => {
-  const fields = fieldsArr.join(', ');
+module.exports.getFieldsStr = (fieldsArr) => {
+  const fieldsStr = fieldsArr.join(', ');
 
-  return fields;
+  return fieldsStr;
 };
 
-module.exports.getValues = (row, fieldsArr) => {
-  let values = fieldsArr.map((field) => { return row[field]; });
-  for (let i = 0; i < values.length; i++) {
-    if (values[i] === null || values[i] === '') { // handle empty cells
-      values[i] = 'null';
+module.exports.getValuesStr = (row, fieldsArr) => {
+  const valuesArr = fieldsArr.map((field) => { return row[field]; });
+
+  for (let i = 0; i < valuesArr.length; i++) {
+    if (valuesArr[i] === '' || valuesArr[i] === null) { // handle empty values
+      valuesArr[i] = 'null';
     }
-    if (typeof(values[i]) === 'string' && values[i] !== 'null') {
-      values[i] = `"${values[i]}"`;
+    if (typeof(valuesArr[i]) === 'string' && valuesArr[i] !== 'null') {
+      valuesArr[i] = `'${valuesArr[i]}'`;
     }
   }
-  values = values.join(', ');
 
-  return values;
+  const valuesStr = valuesArr.join(', ');
+
+  return valuesStr;
 };
 
 module.exports.getUpdateQuery = (fieldsArr) => {
   for (let i = 0; i < fieldsArr.length; i++) {
     fieldsArr[i] = `${fieldsArr[i]}=VALUES(${fieldsArr[i]})`;
   }
+
   const updateQuery = fieldsArr.join(', ');
 
   return updateQuery;

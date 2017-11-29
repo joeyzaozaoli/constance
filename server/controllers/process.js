@@ -18,14 +18,14 @@ module.exports.createAndUpdateProcess = (req, res) => {
 
   for (const row of rows) {
     const fieldsArr = lib.getFieldsArr(row);
-    const fields = lib.getFields(fieldsArr);
-    const values = lib.getValues(row, fieldsArr);
+    const fieldsStr = lib.getFieldsStr(fieldsArr);
+    const valuesStr = lib.getValuesStr(row, fieldsArr);
 
     if (req.method === 'POST') {
-      db.query(`INSERT INTO processes(${fields}) VALUES (${values});`);
+      db.query(`INSERT INTO processes(${fieldsStr}) VALUES (${valuesStr});`);
     } else if (req.method === 'PUT') {
       const updateQuery = lib.getUpdateQuery(fieldsArr);
-      db.query(`INSERT INTO processes(${fields}) VALUES (${values}) ON DUPLICATE KEY UPDATE ${updateQuery};`);
+      db.query(`INSERT INTO processes(${fieldsStr}) VALUES (${valuesStr}) ON DUPLICATE KEY UPDATE ${updateQuery};`);
     }
   }
 

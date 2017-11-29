@@ -3,14 +3,16 @@ export const getNewAndUpdatedRows = (changes, source, hotTable) => {
   const updatedRows = [];
 
   for (const change of changes) {
-    const rowIndex = change[0]; // per spreadsheet
-    const rowId = hotTable.hotInstance.getSourceDataAtRow(rowIndex).id; // per database
+    const rowIndex = change[0]; // index per spreadsheet
+    const rowId = hotTable.hotInstance.getSourceDataAtRow(rowIndex).id; // id per database
     const field = change[1];
     const newValue = change[3];
-    const colIndex = hotTable.hotInstance.propToCol(change[1]); // per spreadsheet
+    const colIndex = hotTable.hotInstance.propToCol(field);
     const cell = hotTable.hotInstance.getCell(rowIndex, colIndex);
 
+    // if change is of valid data type
     if (!cell.classList.value.split(' ').includes('htInvalid')) {
+      // if change's corresponding row was empty prior to change
       if (rowId === null) {
         let found = false;
 
@@ -27,7 +29,7 @@ export const getNewAndUpdatedRows = (changes, source, hotTable) => {
           newRow[field] = newValue;
           newRows.push(newRow);
         }
-
+      // if change's corresponding row was NOT empty prior to change
       } else {
         let found = false;
 
@@ -48,11 +50,14 @@ export const getNewAndUpdatedRows = (changes, source, hotTable) => {
     }
   }
 
-  for (const newRow of newRows) {
-    if ('index' in newRow) {
-      delete newRow.index;
+  // delete row index before sending to server
+  if (newRows.length > 0) {
+    for (const newRow of newRows) {
+      if ('index' in newRow) { delete newRow.index; }
     }
   }
 
-  return {newRows, updatedRows};
+  if (newRows.length > 0 || updatedRows.length > 0) {
+    return {newRows, updatedRows};
+  }
 };
