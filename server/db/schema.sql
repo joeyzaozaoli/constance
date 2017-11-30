@@ -9,7 +9,6 @@ USE constance;
 CREATE TABLE companies (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(35),
-  UNIQUE (name),
   PRIMARY KEY (id)
 );
 
@@ -19,7 +18,6 @@ CREATE TABLE processes (
   shortName VARCHAR(5),
   name VARCHAR(45),
   overview TEXT,
-  UNIQUE (shortName),
   PRIMARY KEY (id),
   FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE
 );

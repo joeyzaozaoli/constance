@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-import { getNewAndUpdatedRows } from '../lib/helper';
+import { createAndUpdateRowsOfTable } from '../lib/helper';
 
 export const GET_COMPANY = 'GET_COMPANY';
 export const getCompany = () => {
-  const request = axios.get('/api/company');
+  const request = axios.get('/company');
   return {
     type: GET_COMPANY,
     payload: request
@@ -13,17 +13,8 @@ export const getCompany = () => {
 
 export const updateCompany = (changes, source, hotTable) => {
   return (dispatch) => {
-    const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable);
-
-    if (newAndUpdatedRows) {
-      const updatedRows = newAndUpdatedRows.updatedRows;
-
-      if (updatedRows.length > 0) {
-        axios.put('/company', {updatedRows})
-        .then(() => {
-          dispatch(getCompany());
-        });
-      }
-    }
+    createAndUpdateRowsOfTable(changes, source, hotTable, null, '/company', () => {
+      dispatch(getCompany());
+    });
   };
 };

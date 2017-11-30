@@ -2,13 +2,13 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { getCurrentProcess } from '../actions/processAction';
+import { getProcess } from '../actions/processAction';
 
 class ProcessListEntry extends React.Component {
 
   render() {
     return (
-      <button onClick={() => {this.props.getCurrentProcess(this.props.process);}}>
+      <button onClick={() => {this.props.getProcess(this.props.process);}}>
         {this.props.process.shortName}
       </button>
     );
@@ -18,7 +18,7 @@ class ProcessListEntry extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    getCurrentProcess: getCurrentProcess
+    getProcess: getProcess
   }, dispatch);
 };
 

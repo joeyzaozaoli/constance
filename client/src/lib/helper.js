@@ -1,4 +1,6 @@
-export const getNewAndUpdatedRows = (changes, source, hotTable) => {
+import axios from 'axios';
+
+const getNewAndUpdatedRows = (changes, source, hotTable) => {
   const newRows = [];
   const updatedRows = [];
 
@@ -61,3 +63,26 @@ export const getNewAndUpdatedRows = (changes, source, hotTable) => {
     return {newRows, updatedRows};
   }
 };
+
+export const createAndUpdateRowsOfTable = (changes, source, hotTable, postUrl, putUrl, cb) => {
+  const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable);
+
+  if (newAndUpdatedRows) {
+    if (postUrl) {
+      const newRows = newAndUpdatedRows.newRows;
+      if (newRows.length > 0) {
+        axios.post(postUrl, {newRows})
+        .then(cb);
+      }
+    }
+
+    if (putUrl) {
+      const updatedRows = newAndUpdatedRows.updatedRows;
+      if (updatedRows.length > 0) {
+        axios.put(putUrl, {updatedRows})
+        .then(cb);
+      }
+    }
+  }
+};
+

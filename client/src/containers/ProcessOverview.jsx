@@ -12,10 +12,10 @@ class ProcessOverview extends React.Component {
 
     return (
       <div>
-        <div>{this.props.currentProcess.acronym}</div>
-        <div>{this.props.currentProcess.expansion}</div>
+        <div>{this.props.process.shortName}</div>
+        <div>{this.props.process.name}</div>
         <HotTable root='hot' ref='table' settings={{
-          data: [this.props.currentProcess],
+          data: this.props.process,
           columns: [
             {data: 'id'},
             {data: 'overview'}
@@ -44,7 +44,7 @@ class ProcessOverview extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentProcess: state.process.currentProcess
+    process: state.process.process
   };
 };
 

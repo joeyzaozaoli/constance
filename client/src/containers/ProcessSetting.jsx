@@ -30,8 +30,8 @@ class ProcessSetting extends React.Component {
           ],
           colWidths: [
             0.1,
-            100,
-            200
+            200,
+            300
           ],
           hiddenColumns: { columns: [0], indicators: false },
           columnSorting: true,
