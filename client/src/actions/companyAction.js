@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { createAndUpdateRowsOfTable } from '../lib/helper';
+import { getNewAndUpdatedRows, createAndUpdateRowsOfTable } from '../lib/helper';
 
 export const GET_COMPANY = 'GET_COMPANY';
 export const getCompany = () => {
@@ -13,7 +13,8 @@ export const getCompany = () => {
 
 export const updateCompany = (changes, source, hotTable) => {
   return (dispatch) => {
-    createAndUpdateRowsOfTable(changes, source, hotTable, null, '/company', () => {
+    const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable);
+    createAndUpdateRowsOfTable(newAndUpdatedRows, null, '/company', () => {
       dispatch(getCompany());
     });
   };

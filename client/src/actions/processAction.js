@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { createAndUpdateRowsOfTable } from '../lib/helper';
+import { getNewAndUpdatedRows, createAndUpdateRowsOfTable } from '../lib/helper';
 
 export const GET_ALL_PROCESSES = 'GET_ALL_PROCESSES';
 export const getAllProcesses = () => {
@@ -19,10 +19,13 @@ export const getProcess = (proces) => { // avoid naming conflict with process
   };
 };
 
-export const createAndUpdateProcess = (changes, source, hotTable) => {
+export const createAndUpdateProcess = (changes, source, hotTable, foreignKeyValuePairs) => {
   return (dispatch) => {
-    createAndUpdateRowsOfTable(changes, source, hotTable, '/process', '/process', () => {
+    const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable, foreignKeyValuePairs);
+    createAndUpdateRowsOfTable(newAndUpdatedRows, '/process', '/process', () => {
       dispatch(getAllProcesses());
     });
   };
 };
+
+

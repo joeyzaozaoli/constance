@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const getNewAndUpdatedRows = (changes, source, hotTable) => {
+export const getNewAndUpdatedRows = (changes, source, hotTable, foreignKeyValuePairs) => {
   const newRows = [];
   const updatedRows = [];
 
@@ -15,7 +15,7 @@ const getNewAndUpdatedRows = (changes, source, hotTable) => {
     // if change is of valid data type
     if (!cell.classList.value.split(' ').includes('htInvalid')) {
       // if change's corresponding row was empty prior to change
-      if (rowId === null) {
+      if (!rowId) {
         let found = false;
 
         for (const newRow of newRows) {
@@ -52,10 +52,12 @@ const getNewAndUpdatedRows = (changes, source, hotTable) => {
     }
   }
 
-  // delete row index before sending to server
   if (newRows.length > 0) {
     for (const newRow of newRows) {
-      if ('index' in newRow) { delete newRow.index; }
+      // remove row index
+      delete newRow.index;
+      // add foreign key-value pairs
+      if (foreignKeyValuePairs) { Object.assign(newRow, ...foreignKeyValuePairs); }
     }
   }
 
@@ -64,9 +66,7 @@ const getNewAndUpdatedRows = (changes, source, hotTable) => {
   }
 };
 
-export const createAndUpdateRowsOfTable = (changes, source, hotTable, postUrl, putUrl, cb) => {
-  const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable);
-
+export const createAndUpdateRowsOfTable = (newAndUpdatedRows, postUrl, putUrl, cb) => {
   if (newAndUpdatedRows) {
     if (postUrl) {
       const newRows = newAndUpdatedRows.newRows;
