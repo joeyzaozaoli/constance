@@ -31,7 +31,7 @@ class ProcessOverview extends React.Component {
           hiddenColumns: { columns: [0], indicators: false },
           afterChange: (changes, source) => {
             if (changes && source !== 'loadData') {
-              const hotTable = this.refs.table;
+              const hotTable = this.refs.table.hotInstance;
               container.props.createAndUpdateProcess(changes, source, hotTable);
             }
           }

@@ -39,7 +39,7 @@ class ProcessSetting extends React.Component {
           minSpareRows: 1,
           afterChange: (changes, source) => {
             if (changes && source !== 'loadData') {
-              const hotTable = this.refs.table;
+              const hotTable = this.refs.table.hotInstance;
               const foreignKeyValuePairs = [];
               const foreignKeyValuePair = {company_id: this.props.company[0].id};
               foreignKeyValuePairs.push(foreignKeyValuePair);

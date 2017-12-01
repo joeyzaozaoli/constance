@@ -6,11 +6,11 @@ export const getNewAndUpdatedRows = (changes, source, hotTable, foreignKeyValueP
 
   for (const change of changes) {
     const rowIndex = change[0]; // index per spreadsheet
-    const rowId = hotTable.hotInstance.getSourceDataAtRow(rowIndex).id; // id per database
+    const rowId = hotTable.getSourceDataAtRow(rowIndex).id; // id per database
     const field = change[1];
     const newValue = change[3];
-    const colIndex = hotTable.hotInstance.propToCol(field);
-    const cell = hotTable.hotInstance.getCell(rowIndex, colIndex);
+    const colIndex = hotTable.propToCol(field);
+    const cell = hotTable.getCell(rowIndex, colIndex);
 
     // if change is of valid data type
     if (!cell.classList.value.split(' ').includes('htInvalid')) {
