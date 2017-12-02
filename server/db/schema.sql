@@ -31,6 +31,15 @@ CREATE TABLE controlOwners (
   FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE
 );
 
+CREATE TABLE acronyms (
+  id INT NOT NULL AUTO_INCREMENT,
+  company_id INT,
+  acronym VARCHAR(15),
+  expansion VARCHAR(100),
+  PRIMARY KEY (id),
+  FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE
+);
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   Dummy Data
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -46,3 +55,10 @@ INSERT INTO controlOwners(company_id, title, name) VALUES
 (2, 'Director of HR', 'Rachel Whimmy'),
 (2, 'AP Manager', 'Michael Johnson'),
 (2, 'Senior Director of Treasury', 'Debbie Herrington');
+
+INSERT INTO acronyms(company_id, acronym, expansion) VALUES
+(2, 'JE', 'Journal Entry'),
+(2, 'Recon', 'Reconciliation'),
+(2, 'PM', 'Project Management');
+
+
