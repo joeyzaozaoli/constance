@@ -7,9 +7,9 @@ const controlOwner = require('./controllers/controlOwner');
 router.get('/company', company.getCompany);
 router.put('/company', company.updateCompany);
 
-router.get('/processes', proces.getAllProcesses);
-router.post('/process', proces.createAndUpdateProcess);
-router.put('/process', proces.createAndUpdateProcess);
+router.get('/processes', proces.getProcesses);
+router.post('/process', proces.createAndUpdateProcesses);
+router.put('/process', proces.createAndUpdateProcesses);
 
 router.get('/controlowners', controlOwner.getControlOwners);
 router.post('/controlowner', controlOwner.createAndUpdateControlOwners);

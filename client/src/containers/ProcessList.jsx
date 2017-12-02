@@ -3,12 +3,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import ProcessListEntry from './ProcessListEntry.jsx';
-import { getAllProcesses } from '../actions/processAction';
+import { getProcesses } from '../actions/processAction';
 
 class ProcessList extends React.Component {
 
   componentWillMount() {
-    this.props.getAllProcesses();
+    this.props.getProcesses();
   }
 
   render() {
@@ -29,7 +29,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    getAllProcesses: getAllProcesses
+    getProcesses: getProcesses
   }, dispatch);
 };
 

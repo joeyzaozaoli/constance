@@ -3,12 +3,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
 
-import { getAllProcesses, createAndUpdateProcess } from '../actions/processAction';
+import { getProcesses, createAndUpdateProcesses } from '../actions/processAction';
 
 class ProcessSetting extends React.Component {
 
   componentWillMount() {
-    this.props.getAllProcesses();
+    this.props.getProcesses();
   }
 
   render() {
@@ -43,7 +43,7 @@ class ProcessSetting extends React.Component {
               const foreignKeyValuePairs = [];
               const foreignKeyValuePair = {company_id: this.props.company[0].id};
               foreignKeyValuePairs.push(foreignKeyValuePair);
-              container.props.createAndUpdateProcess(changes, source, hotTable, foreignKeyValuePairs);
+              container.props.createAndUpdateProcesses(changes, source, hotTable, foreignKeyValuePairs);
             }
           }
         }} />
@@ -62,8 +62,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    getAllProcesses: getAllProcesses,
-    createAndUpdateProcess: createAndUpdateProcess
+    getProcesses: getProcesses,
+    createAndUpdateProcesses: createAndUpdateProcesses
   }, dispatch);
 };
 

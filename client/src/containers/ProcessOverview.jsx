@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
 
-import { createAndUpdateProcess } from '../actions/processAction';
+import { createAndUpdateProcesses } from '../actions/processAction';
 
 class ProcessOverview extends React.Component {
 
@@ -32,7 +32,7 @@ class ProcessOverview extends React.Component {
           afterChange: (changes, source) => {
             if (changes && source !== 'loadData') {
               const hotTable = this.refs.table.hotInstance;
-              container.props.createAndUpdateProcess(changes, source, hotTable);
+              container.props.createAndUpdateProcesses(changes, source, hotTable);
             }
           }
         }} />
@@ -50,7 +50,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    createAndUpdateProcess: createAndUpdateProcess
+    createAndUpdateProcesses: createAndUpdateProcesses
   }, dispatch);
 };
 

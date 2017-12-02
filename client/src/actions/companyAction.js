@@ -2,11 +2,10 @@ import axios from 'axios';
 
 import { getNewAndUpdatedRows, createAndUpdateRowsOfTable } from '../lib/helper';
 
-export const GET_COMPANY = 'GET_COMPANY';
 export const getCompany = () => {
   const request = axios.get('/company');
   return {
-    type: GET_COMPANY,
+    type: 'GET_COMPANY',
     payload: request
   };
 };
