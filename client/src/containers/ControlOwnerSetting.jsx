@@ -62,8 +62,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    getControlOwners: getControlOwners,
-    createAndUpdateControlOwners: createAndUpdateControlOwners
+    getControlOwners, createAndUpdateControlOwners
   }, dispatch);
 };
 

@@ -62,8 +62,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    getAcronyms: getAcronyms,
-    createAndUpdateAcronyms: createAndUpdateAcronyms
+    getAcronyms, createAndUpdateAcronyms
   }, dispatch);
 };
 

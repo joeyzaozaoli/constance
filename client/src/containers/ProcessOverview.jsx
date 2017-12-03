@@ -50,7 +50,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    createAndUpdateProcesses: createAndUpdateProcesses
+    createAndUpdateProcesses
   }, dispatch);
 };
 

@@ -18,7 +18,7 @@ class ProcessListEntry extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    getProcess: getProcess
+    getProcess
   }, dispatch);
 };
 

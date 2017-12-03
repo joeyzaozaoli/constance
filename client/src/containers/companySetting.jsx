@@ -52,8 +52,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    getCompany: getCompany,
-    updateCompany: updateCompany
+    getCompany, updateCompany
   }, dispatch);
 };
 
