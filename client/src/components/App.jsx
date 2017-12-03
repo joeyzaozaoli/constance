@@ -1,21 +1,23 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import NavBar from './NavBar.jsx';
-import Setting from './Setting.jsx';
 import Narrative from './Narrative.jsx';
+import Setting from './Setting.jsx';
 
 class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <NavBar />
-        <Switch>
-          <Route exact path='/setting' component={Setting} />
-          <Route exact path='/narrative' component={Narrative} />
-        </Switch>
-      </div>
+      <BrowserRouter>
+        <div>
+          <NavBar />
+          <Switch>
+            <Route path='/narrative' component={Narrative} />
+            <Route path='/setting' component={Setting} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 
