@@ -7,7 +7,7 @@ import { getAcronyms, createAndUpdateAcronyms } from '../actions/acronymAction';
 
 class AcronymSetting extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getAcronyms();
   }
 

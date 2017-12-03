@@ -7,7 +7,7 @@ import { getControlOwners, createAndUpdateControlOwners } from '../actions/contr
 
 class ControlOwnerSetting extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getControlOwners();
   }
 

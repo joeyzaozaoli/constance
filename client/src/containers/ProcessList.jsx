@@ -7,7 +7,7 @@ import { getProcesses } from '../actions/processAction';
 
 class ProcessList extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getProcesses();
   }
 

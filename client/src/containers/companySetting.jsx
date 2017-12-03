@@ -7,7 +7,7 @@ import { getCompany, updateCompany } from '../actions/companyAction';
 
 class CompanySetting extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getCompany();
   }
 

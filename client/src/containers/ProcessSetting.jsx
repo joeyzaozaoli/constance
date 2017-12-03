@@ -7,7 +7,7 @@ import { getProcesses, createAndUpdateProcesses } from '../actions/processAction
 
 class ProcessSetting extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getProcesses();
   }
 
