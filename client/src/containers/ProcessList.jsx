@@ -1,5 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import ProcessListEntry from './ProcessListEntry.jsx';
@@ -27,10 +26,6 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    getProcesses
-  }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProcessList);
+export default connect(mapStateToProps, {
+  getProcesses
+})(ProcessList);

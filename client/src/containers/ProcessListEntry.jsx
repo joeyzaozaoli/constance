@@ -1,5 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { getProcess } from '../actions/processAction';
@@ -16,10 +15,6 @@ class ProcessListEntry extends React.Component {
 
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    getProcess
-  }, dispatch);
-};
-
-export default connect(null, mapDispatchToProps)(ProcessListEntry);
+export default connect(null, {
+  getProcess
+})(ProcessListEntry);

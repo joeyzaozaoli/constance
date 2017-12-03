@@ -1,5 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
 
@@ -60,10 +59,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    getProcesses, createAndUpdateProcesses
-  }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProcessSetting);
+export default connect(mapStateToProps, {
+  getProcesses, createAndUpdateProcesses
+})(ProcessSetting);

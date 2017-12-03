@@ -1,5 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
 
@@ -50,10 +49,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    getCompany, updateCompany
-  }, dispatch);
-};
+export default connect(mapStateToProps, {
+  getCompany, updateCompany
+})(CompanySetting);
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompanySetting);

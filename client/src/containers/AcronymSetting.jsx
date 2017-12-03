@@ -1,5 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
 
@@ -60,10 +59,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    getAcronyms, createAndUpdateAcronyms
-  }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AcronymSetting);
+export default connect(mapStateToProps, {
+  getAcronyms, createAndUpdateAcronyms
+})(AcronymSetting);
