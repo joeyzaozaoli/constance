@@ -13,7 +13,7 @@ export const getControlOwners = () => {
 export const createAndUpdateControlOwners = (changes, source, hotTable, foreignKeyValuePairs) => {
   return (dispatch) => {
     const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable, foreignKeyValuePairs);
-    createAndUpdateRowsOfTable(newAndUpdatedRows, '/controlowner', '/controlowner', () => {
+    createAndUpdateRowsOfTable(newAndUpdatedRows, '/controlowners', '/controlowner', () => {
       dispatch(getControlOwners());
     });
   };

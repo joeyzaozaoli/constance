@@ -13,7 +13,7 @@ export const getAcronyms = () => {
 export const createAndUpdateAcronyms = (changes, source, hotTable, foreignKeyValuePairs) => {
   return (dispatch) => {
     const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable, foreignKeyValuePairs);
-    createAndUpdateRowsOfTable(newAndUpdatedRows, '/acronym', '/acronym', () => {
+    createAndUpdateRowsOfTable(newAndUpdatedRows, '/acronyms', '/acronym', () => {
       dispatch(getAcronyms());
     });
   };

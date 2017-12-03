@@ -20,7 +20,7 @@ export const getProcess = (proces) => { // avoid naming conflict with process
 export const createAndUpdateProcesses = (changes, source, hotTable, foreignKeyValuePairs) => {
   return (dispatch) => {
     const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable, foreignKeyValuePairs);
-    createAndUpdateRowsOfTable(newAndUpdatedRows, '/process', '/process', () => {
+    createAndUpdateRowsOfTable(newAndUpdatedRows, '/processes', '/process', () => {
       dispatch(getAllProcesses());
     });
   };
