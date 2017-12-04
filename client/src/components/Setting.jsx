@@ -1,23 +1,28 @@
 import React from 'react';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 import CompanySetting from '../containers/CompanySetting.jsx';
 import ProcessSetting from '../containers/ProcessSetting.jsx';
 import ControlOwnerSetting from '../containers/ControlOwnerSetting.jsx';
 import AcronymSetting from '../containers/AcronymSetting.jsx';
 
-class Setting extends React.Component {
-
-  render() {
-    return (
+const Setting = ({match}) => (
+  <BrowserRouter>
+    <div>
       <div>
-        <CompanySetting />
-        <ProcessSetting />
-        <ControlOwnerSetting />
-        <AcronymSetting />
+        <button><Link to={`${match.url}/`}>Company</Link></button>
+        <button><Link to={`${match.url}/processes`}>Processes</Link></button>
+        <button><Link to={`${match.url}/controlowners`}>Control Owners</Link></button>
+        <button><Link to={`${match.url}/acronyms`}>Acronyms</Link></button>
       </div>
-    );
-  }
-
-}
+      <Switch>
+        <Route exact path={`${match.url}/`} component={CompanySetting} />
+        <Route path={`${match.url}/processes`} component={ProcessSetting} />
+        <Route path={`${match.url}/controlowners`} component={ControlOwnerSetting} />
+        <Route path={`${match.url}/acronyms`} component={AcronymSetting} />
+      </Switch>
+    </div>
+  </BrowserRouter>
+)
 
 export default Setting;
