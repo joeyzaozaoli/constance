@@ -20,4 +20,8 @@ router.get('/acronyms', acronym.getAcronyms);
 router.post('/acronyms', acronym.createAndUpdateAcronyms);
 router.put('/acronym', acronym.createAndUpdateAcronyms);
 
+router.get('/*', (req, res) => {
+  res.redirect('/');
+});
+
 module.exports = router;
