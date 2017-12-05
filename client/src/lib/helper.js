@@ -6,7 +6,7 @@ export const getNewAndUpdatedRows = (changes, source, hotTable, foreignKeyValueP
 
   for (const change of changes) {
     const rowIndex = change[0]; // index per spreadsheet
-    const rowId = hotTable.getSourceDataAtRow(rowIndex).id; // id per database
+    const rowId = hotTable.getDataAtRow(rowIndex)[0]; // id per database
     const field = change[1];
     const newValue = change[3];
     const colIndex = hotTable.propToCol(field);
