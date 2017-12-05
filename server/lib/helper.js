@@ -1,5 +1,9 @@
 const db = require('../db/config');
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+  CRUD Operation : C & U
+* * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 const getFieldsArr = (row) => {
   const fieldsArr = Object.keys(row);
 
@@ -63,6 +67,10 @@ module.exports.createAndUpdateRowsOfTable = (req, res, table) => {
 
   res.sendStatus(201);
 };
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+  CRUD Operation : D
+* * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 module.exports.deleteRowsOfTable = (req, res, table) => {
   const removedIds = req.body.removedIds;

@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+  CRUD Operation : C & U
+* * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 export const getNewAndUpdatedRows = (changes, source, hotTable, foreignKeyValuePairs) => {
   const newRows = [];
   const updatedRows = [];
@@ -86,15 +90,19 @@ export const createAndUpdateRowsOfTable = (newAndUpdatedRows, postUrl, putUrl, c
   }
 };
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+  CRUD Operation : D
+* * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 export const getRemovedIds = (index, amount, hotTable) => {
-  const selectedRows = hotTable.getSelected();
-  const startRowIndex = selectedRows[0];
-  const endRowIndex = selectedRows[2];
-  const smallestRowIndex = Math.min(startRowIndex, endRowIndex);
-  const biggestRowIndex = Math.max(startRowIndex, endRowIndex);
+  const selected = hotTable.getSelected();
+  const startRowIndex = selected[0];
+  const endRowIndex = selected[2];
+  const lowRowIndex = Math.min(startRowIndex, endRowIndex);
+  const highRowIndex = Math.max(startRowIndex, endRowIndex);
 
   const removedIds = [];
-  for (let rowIndex = smallestRowIndex; rowIndex <= biggestRowIndex; rowIndex++) {
+  for (let rowIndex = lowRowIndex; rowIndex <= highRowIndex; rowIndex++) {
     const rowId = hotTable.getDataAtRow(rowIndex)[0];
     removedIds.push(rowId);
   }
