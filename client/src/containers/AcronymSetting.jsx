@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
 
-import { getAcronyms, createAndUpdateAcronyms } from '../actions/acronymAction';
+import { fetchAcronyms, createAndUpdateAcronyms } from '../actions/acronymAction';
 
 class AcronymSetting extends React.Component {
 
   componentDidMount() {
-    this.props.getAcronyms();
+    this.props.fetchAcronyms();
   }
 
   render() {
@@ -60,5 +60,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  getAcronyms, createAndUpdateAcronyms
+  fetchAcronyms, createAndUpdateAcronyms
 })(AcronymSetting);

@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getProcess } from '../actions/processAction';
+import { fetchProcess } from '../actions/processAction';
 
 class ProcessListEntry extends React.Component {
 
   render() {
     return (
-      <button onClick={() => {this.props.getProcess(this.props.process);}}>
+      <button onClick={() => {this.props.fetchProcess(this.props.process);}}>
         {this.props.process.shortName}
       </button>
     );
@@ -16,5 +16,5 @@ class ProcessListEntry extends React.Component {
 }
 
 export default connect(null, {
-  getProcess
+  fetchProcess
 })(ProcessListEntry);

@@ -2,10 +2,10 @@ import axios from 'axios';
 
 import { getNewAndUpdatedRows, createAndUpdateRowsOfTable } from '../lib/helper';
 
-export const getAcronyms = () => {
+export const fetchAcronyms = () => {
   const request = axios.get('/acronyms');
   return {
-    type: 'GET_ACRONYMS',
+    type: 'FETCH_ACRONYMS',
     payload: request
   };
 };
@@ -14,7 +14,7 @@ export const createAndUpdateAcronyms = (changes, source, hotTable, foreignKeyVal
   return (dispatch) => {
     const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable, foreignKeyValuePairs);
     createAndUpdateRowsOfTable(newAndUpdatedRows, '/acronyms', '/acronym', () => {
-      dispatch(getAcronyms());
+      dispatch(fetchAcronyms());
     });
   };
 };

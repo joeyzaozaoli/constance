@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
 
-import { getProcesses, createAndUpdateProcesses, deleteProcesses } from '../actions/processAction';
+import { fetchProcesses, createAndUpdateProcesses, deleteProcesses } from '../actions/processAction';
 
 class ProcessSetting extends React.Component {
 
   componentDidMount() {
-    this.props.getProcesses();
+    this.props.fetchProcesses();
   }
 
   render() {
@@ -65,5 +65,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  getProcesses, createAndUpdateProcesses, deleteProcesses
+  fetchProcesses, createAndUpdateProcesses, deleteProcesses
 })(ProcessSetting);

@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
 
-import { getCompany, updateCompany } from '../actions/companyAction';
+import { fetchCompany, updateCompany } from '../actions/companyAction';
 
 class CompanySetting extends React.Component {
 
   componentDidMount() {
-    this.props.getCompany();
+    this.props.fetchCompany();
   }
 
   render() {
@@ -50,6 +50,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  getCompany, updateCompany
+  fetchCompany, updateCompany
 })(CompanySetting);
 

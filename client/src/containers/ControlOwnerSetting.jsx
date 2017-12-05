@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
 
-import { getControlOwners, createAndUpdateControlOwners } from '../actions/controlOwnerAction';
+import { fetchControlOwners, createAndUpdateControlOwners } from '../actions/controlOwnerAction';
 
 class ControlOwnerSetting extends React.Component {
 
   componentDidMount() {
-    this.props.getControlOwners();
+    this.props.fetchControlOwners();
   }
 
   render() {
@@ -60,6 +60,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  getControlOwners, createAndUpdateControlOwners
+  fetchControlOwners, createAndUpdateControlOwners
 })(ControlOwnerSetting);
 

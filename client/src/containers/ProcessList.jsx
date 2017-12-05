@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ProcessListEntry from './ProcessListEntry.jsx';
-import { getProcesses } from '../actions/processAction';
+import { fetchProcesses } from '../actions/processAction';
 
 class ProcessList extends React.Component {
 
   componentDidMount() {
-    this.props.getProcesses();
+    this.props.fetchProcesses();
   }
 
   render() {
@@ -27,5 +27,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  getProcesses
+  fetchProcesses
 })(ProcessList);

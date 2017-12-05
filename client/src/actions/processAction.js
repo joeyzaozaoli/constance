@@ -2,17 +2,17 @@ import axios from 'axios';
 
 import { getNewAndUpdatedRows, createAndUpdateRowsOfTable, getRemovedIds, deleteRowsOfTable } from '../lib/helper';
 
-export const getProcesses = () => {
+export const fetchProcesses = () => {
   const request = axios.get('/processes');
   return {
-    type: 'GET_PROCESSES',
+    type: 'FETCH_PROCESSES',
     payload: request
   };
 };
 
-export const getProcess = (proces) => { // avoid naming conflict with process
+export const fetchProcess = (proces) => { // avoid naming conflict with process
   return {
-    type: 'GET_PROCESS',
+    type: 'FETCH_PROCESS',
     payload: [proces]
   };
 };
@@ -21,7 +21,7 @@ export const createAndUpdateProcesses = (changes, source, hotTable, foreignKeyVa
   return (dispatch) => {
     const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable, foreignKeyValuePairs);
     createAndUpdateRowsOfTable(newAndUpdatedRows, '/processes', '/process', () => {
-      dispatch(getProcesses());
+      dispatch(fetchProcesses());
     });
   };
 };

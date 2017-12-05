@@ -1,8 +1,8 @@
 const processReducer = (state={processes: [], process: []}, action) => {
   switch (action.type) {
-    case ('GET_PROCESSES') :
+    case ('FETCH_PROCESSES') :
       return Object.assign({}, state, {processes: action.payload.data});
-    case ('GET_PROCESS') :
+    case ('FETCH_PROCESS') :
       return Object.assign({}, state, {process: action.payload});
     default :
       return state;

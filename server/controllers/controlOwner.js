@@ -1,7 +1,7 @@
 const db = require('../db/config');
 const lib = require('../lib/helper');
 
-module.exports.getControlOwners = (req, res) => {
+module.exports.fetchControlOwners = (req, res) => {
   const queryStr = 'SELECT * from controlOwners WHERE company_id=2;'
   db.query(queryStr, (err, rows) => {
     if (!err) { res.json(rows); }
