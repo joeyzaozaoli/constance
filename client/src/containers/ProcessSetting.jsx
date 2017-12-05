@@ -36,6 +36,7 @@ class ProcessSetting extends React.Component {
           columnSorting: true,
           rowHeaders: true,
           minSpareRows: 1,
+          contextMenu: ['remove_row'],
           afterChange: (changes, source) => {
             if (changes && source !== 'loadData') {
               const hotTable = this.refs.table.hotInstance;
@@ -44,6 +45,9 @@ class ProcessSetting extends React.Component {
               foreignKeyValuePairs.push(foreignKeyValuePair);
               container.props.createAndUpdateProcesses(changes, source, hotTable, foreignKeyValuePairs);
             }
+          },
+          afterRemoveRow: (index, amount) => {
+            const hotTable = this.refs.table.hotInstance;
           }
         }} />
       </div>

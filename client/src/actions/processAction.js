@@ -21,7 +21,7 @@ export const createAndUpdateProcesses = (changes, source, hotTable, foreignKeyVa
   return (dispatch) => {
     const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable, foreignKeyValuePairs);
     createAndUpdateRowsOfTable(newAndUpdatedRows, '/processes', '/process', () => {
-      dispatch(getAllProcesses());
+      dispatch(getProcesses());
     });
   };
 };
