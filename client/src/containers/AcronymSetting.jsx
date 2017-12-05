@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
 
-import { fetchAcronyms, createAndUpdateAcronyms } from '../actions/acronymAction';
+import { fetchAcronyms, createAndUpdateAcronyms, deleteAcronyms } from '../actions/acronymAction';
 
 class AcronymSetting extends React.Component {
 
@@ -36,6 +36,7 @@ class AcronymSetting extends React.Component {
           columnSorting: true,
           rowHeaders: true,
           minSpareRows: 1,
+          contextMenu: ['remove_row'],
           afterChange: (changes, source) => {
             if (changes && source !== 'loadData') {
               const hotTable = this.refs.table.hotInstance;
@@ -44,6 +45,10 @@ class AcronymSetting extends React.Component {
               foreignKeyValuePairs.push(foreignKeyValuePair);
               container.props.createAndUpdateAcronyms(changes, source, hotTable, foreignKeyValuePairs);
             }
+          },
+          beforeRemoveRow: (index, amount) => {
+            const hotTable = this.refs.table.hotInstance;
+            container.props.deleteAcronyms(index, amount, hotTable);
           }
         }} />
       </div>
@@ -60,5 +65,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  fetchAcronyms, createAndUpdateAcronyms
+  fetchAcronyms, createAndUpdateAcronyms, deleteAcronyms
 })(AcronymSetting);

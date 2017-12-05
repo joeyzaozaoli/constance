@@ -11,3 +11,8 @@ module.exports.fetchAcronyms = (req, res) => {
 module.exports.createAndUpdateAcronyms = (req, res) => {
   lib.createAndUpdateRowsOfTable(req, res, 'acronyms');
 };
+
+module.exports.deleteAcronyms = (req, res) => {
+  lib.deleteRowsOfTable(req, res, 'acronyms');
+};
+

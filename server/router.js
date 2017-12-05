@@ -20,6 +20,7 @@ router.put('/controlowner', controlOwner.createAndUpdateControlOwners);
 router.get('/acronyms', acronym.fetchAcronyms);
 router.post('/acronyms', acronym.createAndUpdateAcronyms);
 router.put('/acronym', acronym.createAndUpdateAcronyms);
+router.delete('/acronyms', acronym.deleteAcronyms);
 
 router.get('/*', (req, res) => {
   res.redirect('/');
