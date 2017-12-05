@@ -86,3 +86,26 @@ export const createAndUpdateRowsOfTable = (newAndUpdatedRows, postUrl, putUrl, c
   }
 };
 
+export const getRemovedIds = (index, amount, hotTable) => {
+  const selectedRows = hotTable.getSelected();
+  const startRowIndex = selectedRows[0];
+  const endRowIndex = selectedRows[2];
+  const smallestRowIndex = Math.min(startRowIndex, endRowIndex);
+  const biggestRowIndex = Math.max(startRowIndex, endRowIndex);
+
+  const removedIds = [];
+  for (let rowIndex = smallestRowIndex; rowIndex <= biggestRowIndex; rowIndex++) {
+    const rowId = hotTable.getDataAtRow(rowIndex)[0];
+    removedIds.push(rowId);
+  }
+  return removedIds;
+};
+
+export const deleteRowsOfTable = (removedIds, deleteUrl) => {
+  axios({
+    method: 'DELETE',
+    url: deleteUrl,
+    data: {removedIds}
+  });
+};
+

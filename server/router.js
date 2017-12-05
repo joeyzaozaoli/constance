@@ -11,6 +11,7 @@ router.put('/company', company.updateCompany);
 router.get('/processes', proces.getProcesses);
 router.post('/processes', proces.createAndUpdateProcesses);
 router.put('/process', proces.createAndUpdateProcesses);
+router.delete('/processes', proces.deleteProcesses);
 
 router.get('/controlowners', controlOwner.getControlOwners);
 router.post('/controlowners', controlOwner.createAndUpdateControlOwners);

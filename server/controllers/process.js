@@ -11,3 +11,7 @@ module.exports.getProcesses = (req, res) => {
 module.exports.createAndUpdateProcesses = (req, res) => {
   lib.createAndUpdateRowsOfTable(req, res, 'processes');
 };
+
+module.exports.deleteProcesses = (req, res) => {
+  lib.deleteRowsOfTable(req, res, 'processes');
+};

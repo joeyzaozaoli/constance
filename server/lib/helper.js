@@ -64,4 +64,11 @@ module.exports.createAndUpdateRowsOfTable = (req, res, table) => {
   res.sendStatus(201);
 };
 
+module.exports.deleteRowsOfTable = (req, res, table) => {
+  const removedIds = req.body.removedIds;
+
+  db.query(`DELETE FROM ${table} WHERE id IN (${removedIds});`, (err) => {
+    if (!err) { res.sendStatus(200); }
+  });
+};
 

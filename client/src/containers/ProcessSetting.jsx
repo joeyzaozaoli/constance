@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
 
-import { getProcesses, createAndUpdateProcesses } from '../actions/processAction';
+import { getProcesses, createAndUpdateProcesses, deleteProcesses } from '../actions/processAction';
 
 class ProcessSetting extends React.Component {
 
@@ -28,7 +28,7 @@ class ProcessSetting extends React.Component {
             'Short for'
           ],
           colWidths: [
-            0.1,
+            50,
             200,
             300
           ],
@@ -46,8 +46,9 @@ class ProcessSetting extends React.Component {
               container.props.createAndUpdateProcesses(changes, source, hotTable, foreignKeyValuePairs);
             }
           },
-          afterRemoveRow: (index, amount) => {
+          beforeRemoveRow: (index, amount) => {
             const hotTable = this.refs.table.hotInstance;
+            container.props.deleteProcesses(index, amount, hotTable);
           }
         }} />
       </div>
@@ -64,5 +65,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  getProcesses, createAndUpdateProcesses
+  getProcesses, createAndUpdateProcesses, deleteProcesses
 })(ProcessSetting);

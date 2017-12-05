@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { getNewAndUpdatedRows, createAndUpdateRowsOfTable } from '../lib/helper';
+import { getNewAndUpdatedRows, createAndUpdateRowsOfTable, getRemovedIds, deleteRowsOfTable } from '../lib/helper';
 
 export const getProcesses = () => {
   const request = axios.get('/processes');
@@ -23,6 +23,13 @@ export const createAndUpdateProcesses = (changes, source, hotTable, foreignKeyVa
     createAndUpdateRowsOfTable(newAndUpdatedRows, '/processes', '/process', () => {
       dispatch(getProcesses());
     });
+  };
+};
+
+export const deleteProcesses = (index, amount, hotTable) => {
+  return (dispatch) => {
+    const removedIds = getRemovedIds(index, amount, hotTable);
+    deleteRowsOfTable(removedIds, '/processes');
   };
 };
 
