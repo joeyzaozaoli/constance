@@ -5,10 +5,9 @@ import { getNewAndUpdatedRows, createAndUpdateRowsOfTable, getRemovedIds, delete
 const url = '/processes';
 
 export const fetchProcesses = () => {
-  const request = axios.get(url);
   return {
     type: 'FETCH_PROCESSES',
-    payload: request
+    payload: axios.get(url)
   };
 };
 

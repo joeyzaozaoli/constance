@@ -5,10 +5,9 @@ import { getNewAndUpdatedRows, createAndUpdateRowsOfTable } from '../lib/helper'
 const url = '/company';
 
 export const fetchCompany = () => {
-  const request = axios.get(url);
   return {
     type: 'FETCH_COMPANY',
-    payload: request
+    payload: axios.get(url)
   };
 };
 

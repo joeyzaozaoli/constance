@@ -5,10 +5,9 @@ import { getNewAndUpdatedRows, createAndUpdateRowsOfTable, getRemovedIds, delete
 const url = '/controlowners';
 
 export const fetchControlOwners = () => {
-  const request = axios.get(url);
   return {
     type: 'FETCH_CONTROL_OWNERS',
-    payload: request
+    payload: axios.get(url)
   };
 };
 

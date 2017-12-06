@@ -5,10 +5,9 @@ import { getNewAndUpdatedRows, createAndUpdateRowsOfTable, getRemovedIds, delete
 const url = '/acronyms';
 
 export const fetchAcronyms = () => {
-  const request = axios.get(url);
   return {
     type: 'FETCH_ACRONYMS',
-    payload: request
+    payload: axios.get(url)
   };
 };
 
