@@ -35,11 +35,11 @@ class SampleSizeMatrixSetting extends React.Component {
           ],
           colWidths: [
             0.1,
-            500,
-            500,
-            500,
-            500,
-            500
+            150,
+            100,
+            100,
+            100,
+            100
           ],
           hiddenColumns: { columns: [0], indicators: false },
           columnSorting: true,
