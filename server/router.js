@@ -16,6 +16,7 @@ router.delete('/processes', proces.deleteProcesses);
 router.get('/controlowners', controlOwner.fetchControlOwners);
 router.post('/controlowners', controlOwner.createAndUpdateControlOwners);
 router.put('/controlowner', controlOwner.createAndUpdateControlOwners);
+router.delete('/controlowners', controlOwner.deleteControlOwners);
 
 router.get('/acronyms', acronym.fetchAcronyms);
 router.post('/acronyms', acronym.createAndUpdateAcronyms);

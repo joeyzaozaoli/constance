@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import HotTable from 'react-handsontable';
 
-import { fetchControlOwners, createAndUpdateControlOwners } from '../actions/controlOwnerAction';
+import { fetchControlOwners, createAndUpdateControlOwners, deleteControlOwners } from '../actions/controlOwnerAction';
 
 class ControlOwnerSetting extends React.Component {
 
@@ -36,6 +36,7 @@ class ControlOwnerSetting extends React.Component {
           columnSorting: true,
           rowHeaders: true,
           minSpareRows: 1,
+          contextMenu: ['remove_row'],
           afterChange: (changes, source) => {
             if (changes && source !== 'loadData') {
               const hotTable = this.refs.table.hotInstance;
@@ -44,6 +45,10 @@ class ControlOwnerSetting extends React.Component {
               foreignKeyValuePairs.push(foreignKeyValuePair);
               container.props.createAndUpdateControlOwners(changes, source, hotTable, foreignKeyValuePairs);
             }
+          },
+          beforeRemoveRow: (index, amount) => {
+            const hotTable = this.refs.table.hotInstance;
+            container.props.deleteControlOwners(index, amount, hotTable);
           }
         }} />
       </div>
@@ -60,6 +65,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  fetchControlOwners, createAndUpdateControlOwners
+  fetchControlOwners, createAndUpdateControlOwners, deleteControlOwners
 })(ControlOwnerSetting);
 

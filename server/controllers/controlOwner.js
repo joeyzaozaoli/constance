@@ -11,3 +11,8 @@ module.exports.fetchControlOwners = (req, res) => {
 module.exports.createAndUpdateControlOwners = (req, res) => {
   lib.createAndUpdateRowsOfTable(req, res, 'controlOwners');
 };
+
+module.exports.deleteControlOwners = (req, res) => {
+  lib.deleteRowsOfTable(req, res, 'controlOwners');
+};
+
