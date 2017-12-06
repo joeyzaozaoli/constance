@@ -21,7 +21,7 @@ export const createAndUpdateControlOwners = (changes, source, hotTable, foreignK
 };
 
 export const deleteControlOwners = (index, amount, hotTable) => {
-  return (dispatch) => {
+  return () => {
     const removedIds = getRemovedIds(index, amount, hotTable);
     deleteRowsOfTable(removedIds, url);
   };

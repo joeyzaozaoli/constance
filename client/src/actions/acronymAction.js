@@ -21,7 +21,7 @@ export const createAndUpdateAcronyms = (changes, source, hotTable, foreignKeyVal
 };
 
 export const deleteAcronyms = (index, amount, hotTable) => {
-  return (dispatch) => {
+  return () => {
     const removedIds = getRemovedIds(index, amount, hotTable);
     deleteRowsOfTable(removedIds, url);
   };

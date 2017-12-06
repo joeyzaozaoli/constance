@@ -28,7 +28,7 @@ export const createAndUpdateProcesses = (changes, source, hotTable, foreignKeyVa
 };
 
 export const deleteProcesses = (index, amount, hotTable) => {
-  return (dispatch) => {
+  return () => {
     const removedIds = getRemovedIds(index, amount, hotTable);
     deleteRowsOfTable(removedIds, url);
   };
