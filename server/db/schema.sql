@@ -40,6 +40,18 @@ CREATE TABLE acronyms (
   FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE
 );
 
+CREATE TABLE sampleSizeMatrix (
+  id INT NOT NULL AUTO_INCREMENT,
+  company_id INT,
+  controlFrequency VARCHAR(50),
+  populationSize VARCHAR(50),
+  sampleSizeLow VARCHAR(50),
+  sampleSizeMedium VARCHAR(50),
+  sampleSizeHigh VARCHAR(50),
+  PRIMARY KEY (id),
+  FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE
+);
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   Dummy Data
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -60,5 +72,10 @@ INSERT INTO acronyms(company_id, acronym, expansion) VALUES
 (2, 'JE', 'Journal Entry'),
 (2, 'Recon', 'Reconciliation'),
 (2, 'PM', 'Project Management');
+
+INSERT INTO sampleSizeMatrix(company_id, controlFrequency, populationSize, sampleSizeLow, sampleSizeMedium, sampleSizeHigh) VALUES
+(2, 'Annual', '1', '1', '1', '1'),
+(2, 'Quarterly', '4', '2', '2', '2'),
+(2, 'Monthly', '12', '5', '4', '3');
 
 
