@@ -2,11 +2,10 @@ import axios from 'axios';
 
 import { getNewAndUpdatedRows, createAndUpdateRowsOfTable, getRemovedIds, deleteRowsOfTable } from '../lib/helper';
 
-const plUrl = '/acronyms';
-const sgUrl = '/acronym';
+const url = '/acronyms';
 
 export const fetchAcronyms = () => {
-  const request = axios.get(plUrl);
+  const request = axios.get(url);
   return {
     type: 'FETCH_ACRONYMS',
     payload: request
@@ -16,7 +15,7 @@ export const fetchAcronyms = () => {
 export const createAndUpdateAcronyms = (changes, source, hotTable, foreignKeyValuePairs) => {
   return (dispatch) => {
     const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable, foreignKeyValuePairs);
-    createAndUpdateRowsOfTable(newAndUpdatedRows, plUrl, sgUrl, () => {
+    createAndUpdateRowsOfTable(newAndUpdatedRows, url, url, () => {
       dispatch(fetchAcronyms());
     });
   };
@@ -25,6 +24,6 @@ export const createAndUpdateAcronyms = (changes, source, hotTable, foreignKeyVal
 export const deleteAcronyms = (index, amount, hotTable) => {
   return (dispatch) => {
     const removedIds = getRemovedIds(index, amount, hotTable);
-    deleteRowsOfTable(removedIds, plUrl);
+    deleteRowsOfTable(removedIds, url);
   };
 };

@@ -2,11 +2,10 @@ import axios from 'axios';
 
 import { getNewAndUpdatedRows, createAndUpdateRowsOfTable, getRemovedIds, deleteRowsOfTable } from '../lib/helper';
 
-const plUrl = '/processes';
-const sgUrl = '/process';
+const url = '/processes';
 
 export const fetchProcesses = () => {
-  const request = axios.get(plUrl);
+  const request = axios.get(url);
   return {
     type: 'FETCH_PROCESSES',
     payload: request
@@ -23,7 +22,7 @@ export const fetchProcess = (proces) => { // avoid naming conflict with process
 export const createAndUpdateProcesses = (changes, source, hotTable, foreignKeyValuePairs) => {
   return (dispatch) => {
     const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable, foreignKeyValuePairs);
-    createAndUpdateRowsOfTable(newAndUpdatedRows, plUrl, sgUrl, () => {
+    createAndUpdateRowsOfTable(newAndUpdatedRows, url, url, () => {
       dispatch(fetchProcesses());
     });
   };
@@ -32,7 +31,7 @@ export const createAndUpdateProcesses = (changes, source, hotTable, foreignKeyVa
 export const deleteProcesses = (index, amount, hotTable) => {
   return (dispatch) => {
     const removedIds = getRemovedIds(index, amount, hotTable);
-    deleteRowsOfTable(removedIds, plUrl);
+    deleteRowsOfTable(removedIds, url);
   };
 };
 

@@ -2,11 +2,10 @@ import axios from 'axios';
 
 import { getNewAndUpdatedRows, createAndUpdateRowsOfTable, getRemovedIds, deleteRowsOfTable } from '../lib/helper';
 
-const plUrl = '/controlowners';
-const sgUrl = '/controlowner';
+const url = '/controlowners';
 
 export const fetchControlOwners = () => {
-  const request = axios.get(plUrl);
+  const request = axios.get(url);
   return {
     type: 'FETCH_CONTROL_OWNERS',
     payload: request
@@ -16,7 +15,7 @@ export const fetchControlOwners = () => {
 export const createAndUpdateControlOwners = (changes, source, hotTable, foreignKeyValuePairs) => {
   return (dispatch) => {
     const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable, foreignKeyValuePairs);
-    createAndUpdateRowsOfTable(newAndUpdatedRows, plUrl, sgUrl, () => {
+    createAndUpdateRowsOfTable(newAndUpdatedRows, url, url, () => {
       dispatch(fetchControlOwners());
     });
   };
@@ -25,7 +24,7 @@ export const createAndUpdateControlOwners = (changes, source, hotTable, foreignK
 export const deleteControlOwners = (index, amount, hotTable) => {
   return (dispatch) => {
     const removedIds = getRemovedIds(index, amount, hotTable);
-    deleteRowsOfTable(removedIds, plUrl);
+    deleteRowsOfTable(removedIds, url);
   };
 };
 

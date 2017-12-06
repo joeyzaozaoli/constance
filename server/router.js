@@ -5,23 +5,28 @@ const proces = require('./controllers/process'); // avoid naming conflict with p
 const controlOwner = require('./controllers/controlOwner');
 const acronym = require('./controllers/acronym');
 
-router.get('/company', company.fetchCompany);
-router.put('/company', company.updateCompany);
+const urlForCompany = '/company';
+const urlForProcesses = '/processes';
+const urlForControlOwners = '/controlowners';
+const urlForAcronyms = '/acronyms';
 
-router.get('/processes', proces.fetchProcesses);
-router.post('/processes', proces.createAndUpdateProcesses);
-router.put('/process', proces.createAndUpdateProcesses);
-router.delete('/processes', proces.deleteProcesses);
+router.get(urlForCompany, company.fetchCompany);
+router.put(urlForCompany, company.updateCompany);
 
-router.get('/controlowners', controlOwner.fetchControlOwners);
-router.post('/controlowners', controlOwner.createAndUpdateControlOwners);
-router.put('/controlowner', controlOwner.createAndUpdateControlOwners);
-router.delete('/controlowners', controlOwner.deleteControlOwners);
+router.get(urlForProcesses, proces.fetchProcesses);
+router.post(urlForProcesses, proces.createAndUpdateProcesses);
+router.put(urlForProcesses, proces.createAndUpdateProcesses);
+router.delete(urlForProcesses, proces.deleteProcesses);
 
-router.get('/acronyms', acronym.fetchAcronyms);
-router.post('/acronyms', acronym.createAndUpdateAcronyms);
-router.put('/acronym', acronym.createAndUpdateAcronyms);
-router.delete('/acronyms', acronym.deleteAcronyms);
+router.get(urlForControlOwners, controlOwner.fetchControlOwners);
+router.post(urlForControlOwners, controlOwner.createAndUpdateControlOwners);
+router.put(urlForControlOwners, controlOwner.createAndUpdateControlOwners);
+router.delete(urlForControlOwners, controlOwner.deleteControlOwners);
+
+router.get(urlForAcronyms, acronym.fetchAcronyms);
+router.post(urlForAcronyms, acronym.createAndUpdateAcronyms);
+router.put(urlForAcronyms, acronym.createAndUpdateAcronyms);
+router.delete(urlForAcronyms, acronym.deleteAcronyms);
 
 router.get('/*', (req, res) => {
   res.redirect('/');
