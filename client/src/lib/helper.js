@@ -109,11 +109,12 @@ export const getRemovedIds = (index, amount, hotTable) => {
   return removedIds;
 };
 
-export const deleteRowsOfTable = (removedIds, deleteUrl) => {
+export const deleteRowsOfTable = (removedIds, deleteUrl, cb) => {
   axios({
     method: 'DELETE',
     url: deleteUrl,
     data: {removedIds}
-  });
+  })
+  .then(cb);
 };
 
