@@ -4,9 +4,9 @@ import { getNewAndUpdatedRows, createAndUpdateRowsOfTable, getRemovedIds, delete
 
 const url = '/samplesizematrix';
 
-export const fetchSenarios = () => {
+export const fetchSampleSizeMatrix = () => {
   return {
-    type: 'FETCH_SENARIOS',
+    type: 'FETCH_SAMPLE_SIZE_MATRIX',
     payload: axios.get(url)
   };
 };
@@ -15,7 +15,7 @@ export const createAndUpdateSenarios = (changes, source, hotTable, foreignKeyVal
   return (dispatch) => {
     const newAndUpdatedRows = getNewAndUpdatedRows(changes, source, hotTable, foreignKeyValuePairs);
     createAndUpdateRowsOfTable(newAndUpdatedRows, url, url, () => {
-      dispatch(fetchSenarios());
+      dispatch(fetchSampleSizeMatrix());
     });
   };
 };

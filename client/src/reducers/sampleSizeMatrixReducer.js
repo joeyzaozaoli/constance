@@ -1,7 +1,7 @@
-const sampleSizeMatrixReducer = (state={senarios: []}, action) => {
+const sampleSizeMatrixReducer = (state={sampleSizeMatrix: []}, action) => {
   switch (action.type) {
-    case ('FETCH_SENARIOS') :
-      return Object.assign({}, state, {senarios: action.payload.data});
+    case ('FETCH_SAMPLE_SIZE_MATRIX') :
+      return Object.assign({}, state, {sampleSizeMatrix: action.payload.data});
     default :
       return state;
   }
