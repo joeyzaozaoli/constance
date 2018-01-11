@@ -5,8 +5,8 @@ import axios from 'axios';
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 export const getNewAndUpdatedRows = (changes, source, hotTable, foreignKeyValuePairs) => {
-  const newRows = [];
-  const updatedRows = [];
+  const newRowsObj = {};
+  const updatedRowsObj = {};
 
   for (const change of changes) {
     const rowIndex = change[0]; // index per spreadsheet
@@ -20,46 +20,33 @@ export const getNewAndUpdatedRows = (changes, source, hotTable, foreignKeyValueP
     if (!cell.classList.value.split(' ').includes('htInvalid')) {
       // if change's corresponding row was empty prior to change
       if (!rowId) {
-        let found = false;
-
-        for (const newRow of newRows) {
-          if (newRow.index === rowIndex) {
-            newRow[field] = newValue;
-            found = true;
-            break;
-          }
-        }
-
-        if (!found) {
-          const newRow = {index: rowIndex};
+        if (!newRowsObj[rowIndex]) {
+          let newRow = {};
           newRow[field] = newValue;
-          newRows.push(newRow);
+          newRowsObj[rowIndex] = newRow;
+        } else {
+          let newRow = newRowsObj[rowIndex];
+          newRow[field] = newValue;
         }
       // if change's corresponding row was NOT empty prior to change
       } else {
-        let found = false;
-
-        for (const updatedRow of updatedRows) {
-          if (updatedRow.id === rowId) {
-            updatedRow[field] = newValue;
-            found = true;
-            break;
-          }
-        }
-
-        if (!found) {
-          const updatedRow = {id: rowId};
+        if (!updatedRowsObj[rowId]) {
+          let updatedRow = {id: rowId};
           updatedRow[field] = newValue;
-          updatedRows.push(updatedRow);
+          updatedRowsObj[rowId] = updatedRow;
+        } else {
+          let updatedRow = updatedRowsObj[rowId];
+          updatedRow[field] = newValue;
         }
       }
     }
   }
 
+  const newRows = Object.values(newRowsObj);
+  const updatedRows = Object.values(updatedRowsObj);
+
   if (newRows.length > 0) {
     for (const newRow of newRows) {
-      // remove row index
-      delete newRow.index;
       // add foreign key-value pairs
       if (foreignKeyValuePairs) { Object.assign(newRow, ...foreignKeyValuePairs); }
     }
