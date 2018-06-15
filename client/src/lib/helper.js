@@ -5,6 +5,7 @@ import axios from 'axios';
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 export const getNewAndUpdatedRows = (changes, source, hotTable, foreignKeyValuePairs) => {
+  // create empty hash tables to store new rows and updated rows, respectively
   const newRowsObj = {};
   const updatedRowsObj = {};
 
@@ -18,7 +19,7 @@ export const getNewAndUpdatedRows = (changes, source, hotTable, foreignKeyValueP
 
     // if change is of valid data type
     if (!cell.classList.value.split(' ').includes('htInvalid')) {
-      // if change's corresponding row was empty prior to change
+      // if change is adding a new row
       if (!rowId) {
         if (!newRowsObj[rowIndex]) {
           let newRow = {};
@@ -28,7 +29,7 @@ export const getNewAndUpdatedRows = (changes, source, hotTable, foreignKeyValueP
           let newRow = newRowsObj[rowIndex];
           newRow[field] = newValue;
         }
-      // if change's corresponding row was NOT empty prior to change
+      // otherwise, if change is updating an existing row
       } else {
         if (!updatedRowsObj[rowId]) {
           let updatedRow = {id: rowId};
